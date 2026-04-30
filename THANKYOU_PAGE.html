@@ -1,0 +1,615 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VBB-Sentiment Indicator | Thank You for Your Purchase</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+	<link rel="icon" type="image/x-icon" href="images/fevicon-icon.png">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Source+Sans+Pro:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        :root {
+            --primary-color: #4361ee;
+            --secondary-color: #3a0ca3;
+            --accent-color: #4cc9f0;
+            --dark-color: #1a1a2e;
+            --light-color: #f8f9fa;
+            --success-color: #06d6a0;
+            --transition: all 0.4s ease;
+        }
+
+        body {
+            background-color: var(--light-color);
+            color: #333;
+            line-height: 1.6;
+            transition: var(--transition);
+            overflow-x: hidden;
+        }
+
+        /* Header Section */
+        header {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            padding: 2rem 0;
+            text-align: center;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            position: relative;
+            z-index: 10;
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1rem;
+        }
+
+        .logo {
+            font-size: 2.5rem;
+            margin-right: 15px;
+            color: var(--accent-color);
+        }
+
+        .logo-text {
+            font-size: 2rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+        }
+
+        .tagline {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        /* Main Content */
+        .main-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 3rem 2rem;
+        }
+
+        .thank-you-container {
+            background-color: white;
+            border-radius: 15px;
+            padding: 3rem;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            margin-bottom: 3rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            border-left: 6px solid var(--success-color);
+        }
+
+        .thank-you-container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(to right, var(--primary-color), var(--accent-color), var(--success-color));
+        }
+
+        .success-icon {
+            font-size: 5rem;
+            color: var(--success-color);
+            margin-bottom: 1.5rem;
+        }
+
+        .thank-you-container h1 {
+            color: var(--secondary-color);
+            margin-bottom: 1rem;
+            font-size: 2.5rem;
+        }
+
+        .thank-you-container p {
+            font-size: 1.2rem;
+            color: #555;
+            max-width: 800px;
+            margin: 0 auto 2rem;
+        }
+
+        .course-details {
+            background-color: #f8f9ff;
+            padding: 2rem;
+            border-radius: 10px;
+            margin: 2rem 0;
+            text-align: left;
+            border: 1px solid #eaeaea;
+        }
+
+        .course-details h3 {
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+
+        .course-details ul {
+            list-style-type: none;
+            padding-left: 0;
+        }
+
+        .course-details li {
+            padding: 0.5rem 0;
+            border-bottom: 1px dashed #ddd;
+            display: flex;
+            align-items: center;
+        }
+
+        .course-details li:last-child {
+            border-bottom: none;
+        }
+
+        .course-details li i {
+            color: var(--success-color);
+            margin-right: 10px;
+        }
+
+        /* Action Buttons */
+        .action-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 1.5rem;
+            margin: 2.5rem 0;
+        }
+
+        .btn {
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 1.1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            cursor: pointer;
+            transition: var(--transition);
+            text-decoration: none;
+            border: none;
+            min-width: 220px;
+        }
+
+        .btn-primary {
+            background-color: var(--primary-color);
+            color: white;
+            box-shadow: 0 4px 15px rgba(67, 97, 238, 0.3);
+        }
+
+        .btn-primary:hover {
+            background-color: var(--secondary-color);
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(67, 97, 238, 0.4);
+        }
+
+        .btn-secondary {
+            background-color: #ff4d6d;
+            color: white;
+            box-shadow: 0 4px 15px rgba(255, 77, 109, 0.3);
+        }
+
+        .btn-secondary:hover {
+            background-color: #c9184a;
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(255, 77, 109, 0.4);
+        }
+
+        .btn-success {
+            background-color: var(--success-color);
+            color: white;
+            box-shadow: 0 4px 15px rgba(6, 214, 160, 0.3);
+        }
+
+        .btn-success:hover {
+            background-color: #04a97f;
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(6, 214, 160, 0.4);
+        }
+
+        .btn i {
+            font-size: 1.3rem;
+        }
+
+        /* Next Steps Section */
+        .next-steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin: 4rem 0;
+        }
+
+        .step-card {
+            background-color: white;
+            border-radius: 10px;
+            padding: 2rem;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: var(--transition);
+            text-align: center;
+        }
+
+        .step-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .step-icon {
+            font-size: 3rem;
+            color: var(--primary-color);
+            margin-bottom: 1.5rem;
+        }
+
+        .step-card h3 {
+            color: var(--secondary-color);
+            margin-bottom: 1rem;
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--dark-color);
+            color: white;
+            padding: 4rem 2rem 2rem;
+            margin-top: 4rem;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 3rem;
+        }
+
+        .footer-logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: var(--accent-color);
+        }
+
+        .footer-about p {
+            opacity: 0.8;
+            margin-bottom: 1.5rem;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .social-links a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            color: white;
+            transition: var(--transition);
+        }
+
+        .social-links a:hover {
+            background-color: var(--accent-color);
+            transform: translateY(-3px);
+        }
+
+        .footer-links h4 {
+            color: white;
+            margin-bottom: 1.5rem;
+            font-size: 1.3rem;
+            position: relative;
+            padding-bottom: 10px;
+        }
+
+        .footer-links h4::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 40px;
+            height: 3px;
+            background-color: var(--accent-color);
+        }
+
+        .footer-links ul {
+            list-style-type: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 0.8rem;
+        }
+
+        .footer-links a {
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .footer-links a:hover {
+            color: var(--accent-color);
+            padding-left: 5px;
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 3rem;
+            margin-top: 3rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            opacity: 0.7;
+            font-size: 0.9rem;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .main-content {
+                padding: 2rem 1rem;
+            }
+            
+            .thank-you-container {
+                padding: 2rem 1.5rem;
+            }
+            
+            .thank-you-container h1 {
+                font-size: 2rem;
+            }
+            
+            .action-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .btn {
+                width: 100%;
+                max-width: 300px;
+            }
+            
+            .footer-content {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            header {
+                padding: 1.5rem 0;
+            }
+            
+            .logo-text {
+                font-size: 1.5rem;
+            }
+            
+            .tagline {
+                font-size: 1rem;
+                padding: 0 1rem;
+            }
+            
+            .step-card {
+                padding: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header Section -->
+    <header>
+        <div class="logo-container">
+            <i class="fas fa-graduation-cap logo"></i>
+            <div class="logo-text">VBB-Sentiment</div>
+        </div>
+        <p class="tagline">PROFESSIONAL TRADING TOOL</p>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Thank You Section -->
+        <section class="thank-you-container">
+            <i class="fas fa-check-circle success-icon"></i>
+            <h1>THANK YOU !</h1>
+			<h1> Check Your Email - & Download Indicator Code </h1>
+            <p>© VBB-Sentiment Indicator. Unauthorized resale or redistribution is a punishable offense under Indian IT & Copyright Law.</p>
+            
+            <div class="course-details">
+                <h3>DOWNLOAD FILE </h3>
+                <ul>
+				    <li><i class="fas fa-check"></i>One Time Complete Package - </li>
+                    <li><i class="fas fa-check"></i>Indicator Full Pine Script Code File</li>
+                    <li><i class="fas fa-check"></i> Indicator Setup & Uses tutorials</li>
+                    <li><i class="fas fa-check"></i> Full Control - Indicator is 100% yours</li>
+                    <li><i class="fas fa-check"></i> Lifetime access with pine script </li>
+                    <li><i class="fas fa-check"></i> Latest indicator upadates in private group </li>
+                    <li><i class="fas fa-check"></i> Exclusive community access</li>
+                </ul>
+            </div>
+
+                  <a onclick="downloadFile()" class="btn btn-primary">
+                    <i class="fa fa-download download-icon"></i>  Open File And Copy Code
+                  </a>
+            <!-- Action Buttons -->
+            <div class="action-buttons">
+              
+              <!--  <button onclick="downloadFile()">Download Text File</button> --> 
+
+                <a href="https://www.youtube.com/playlist?list=PLNWivX3Jmy2sqJLIG48jhX5l16HtJu1-W" target="_blank" class="btn btn-secondary">
+                    <i class="fab fa-youtube"></i> SetUp & Uses 
+                </a>
+                <a href="https://chat.whatsapp.com/Eq5qg46ENNeH5FaU6XFjha" target="_blank" class="btn btn-success">
+                   <i class="fa-brands fa-whatsapp" style="color: #028f00;"></i> Join Community
+                </a>
+            </div>
+
+            <p>Need help?  <a href="#faq" style="color: var(--primary-color);">vbbsentimentbyhrishidh@gmail.com</a> contact our support team. </p>
+        </section>
+
+        <!-- Next Steps Section -->
+        <section class="next-steps">
+            <div class="step-card">
+                <i class="fa-solid fa-download" style="color: #74C0FC;"></i>
+                <h3>Download File</h3>
+                <p>click On Download Button And Download File In Your System.</p>
+            </div>
+            
+            <div class="step-card">
+                <i class="fa-solid fa-file" style="color: #74C0FC;"></i>
+                <h3>File Open And Copy Code</h3>
+                <p>After Downloading File - Open File - Select All Code & Copy </p>
+            </div>
+            
+            <div class="step-card">
+                <i class="fa-solid fa-copy" style="color: #74C0FC;"></i>
+                <h3>Paste In Tradingview Pine Code Editor</h3>
+                <p>Open Your Tradingview - Click On Pine Editor - Remove Existed All Code - Then Paste All Our Copy Code</p>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-about">
+                <div class="footer-logo">VBB-Sentiment</div>
+                <p>Advanced volume-based sentiment indicator providing 60 - 70 % accuracy for intraday traders and option sellers. Trade with confidence using data-driven insights.</p>
+                <div class="social-links">
+                    <a href="https://www.youtube.com/playlist?list=PLNWivX3Jmy2sqJLIG48jhX5l16HtJu1-W"><i class="fa-brands fa-youtube"></i></a>
+                   <!-- <a href="https://www.instagram.com/vbb_sentiment_indicator"><i class="fab fa-instagram"></i></a> -->
+                </div>
+            </div>
+            
+           
+            
+           <!-- <div class="footer-links">
+                <h4>Legal</h4>
+                <ul>
+                    <li><a href="privacy_policy.html">Privacy Policy</a></li>
+                    <li><a href="about-us.html">About Us</a></li>
+                    <li><a href="refund-policy.html">Cancellation & Refund Policy</a></li>
+				    <li><a href="terms.html">Terms & Conditions</a></li>
+					<li><a href="shpping-delivery.html">Shipping & Delivery Policy</a></li>
+					<li><a href="contact-us.html">Contact Us</a></li>
+                </ul>
+            </div> -->
+            
+            
+        </div>
+        
+         <footer>
+            <p>&copy; 2026 VBB-Sentiment Indicator. All rights reserved.</p>
+            <p style="margin-top: 10px;">Disclaimer: Trading involves significant risk of loss. Past performance does not guarantee future results. Always conduct your own research and consult with a qualified financial advisor before making investment decisions..</p>
+        </footer>
+    </footer>
+
+    <script>
+        // Background color change on scroll
+        document.addEventListener('DOMContentLoaded', function() {
+            const body = document.body;
+            const header = document.querySelector('header');
+            
+            // Initial background colors array
+            const colors = [
+                '#f8f9fa', // Light gray
+                '#f0f7ff', // Light blue
+                '#f9f7ff', // Light purple
+                '#f0fff4', // Light green
+                '#fff8f0', // Light orange
+                '#f5f0ff'  // Light lavender
+            ];
+            
+            let scrollPosition = 0;
+            let colorIndex = 0;
+            
+            window.addEventListener('scroll', function() {
+                scrollPosition = window.scrollY;
+                
+                // Change color based on scroll position
+                colorIndex = Math.floor(scrollPosition / 300) % colors.length;
+                
+                // Apply the color with smooth transition
+                body.style.backgroundColor = colors[colorIndex];
+                
+                // Adjust header transparency on scroll
+                if (scrollPosition > 50) {
+                    header.style.opacity = '0.95';
+                } else {
+                    header.style.opacity = '1';
+                }
+            });
+            
+            // Download button functionality
+            const downloadBtn = document.getElementById('downloadBtn');
+            downloadBtn.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                // Create a fake download process
+                const originalText = downloadBtn.innerHTML;
+                downloadBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Preparing Download...';
+                downloadBtn.style.opacity = '0.8';
+                
+                // Simulate download process
+                setTimeout(() => {
+                    downloadBtn.innerHTML = '<i class="fas fa-check"></i> Download Started!';
+                    downloadBtn.style.backgroundColor = '#06d6a0';
+                    
+                    // Reset button after 3 seconds
+                    setTimeout(() => {
+                        downloadBtn.innerHTML = originalText;
+                        downloadBtn.style.opacity = '1';
+                        downloadBtn.style.backgroundColor = '';
+                        
+                        // In a real scenario, this would trigger the actual file download
+                        
+                    }, 3000);
+                }, 2000);
+            });
+            
+            // Add hover effect to all buttons
+            const buttons = document.querySelectorAll('.btn');
+            buttons.forEach(button => {
+                button.addEventListener('mouseenter', function() {
+                    this.style.transform = 'translateY(-5px)';
+                });
+                
+                button.addEventListener('mouseleave', function() {
+                    this.style.transform = 'translateY(0)';
+                });
+            });
+            
+            // Smooth scrolling for anchor links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    const targetId = this.getAttribute('href');
+                    if(targetId === '#') return;
+                    
+                    const targetElement = document.querySelector(targetId);
+                    if(targetElement) {
+                        window.scrollTo({
+                            top: targetElement.offsetTop - 80,
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+        });
+  function downloadFile() {
+  // Create an anchor element programmatically
+  const link = document.createElement('a');
+  link.setAttribute('href', 'https://drive.google.com/file/d/15mbaSNl5Iyvcx7hGrHXqwPAVKC0vcv0K/view?usp=sharing'); // Set the file path
+  link.setAttribute('download', 'my_data_file'); // Set the download attribute
+  link.style.display = 'none';
+
+  // Append the link to the body, click it, and remove it
+  document.body.appendChild(link);
+  link.click();
+  document.body.removeChild(link);
+}
+    </script>
+</body>
+</html>
